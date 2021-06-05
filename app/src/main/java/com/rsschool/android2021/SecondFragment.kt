@@ -14,6 +14,12 @@ class SecondFragment : Fragment() {
     private var backButton: Button? = null
     private var result: TextView? = null
 
+    private var fragmentCommunicator: Communicator? = null
+
+    fun setOnFragmentListener(fragmentCommunicator: Communicator) {
+        this.fragmentCommunicator = fragmentCommunicator
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,16 +36,16 @@ class SecondFragment : Fragment() {
         val min = arguments?.getInt(MIN_VALUE_KEY) ?: 0
         val max = arguments?.getInt(MAX_VALUE_KEY) ?: 0
 
-        result?.text = generate(min, max).toString()
+        result?.text = generate(min, max + 1).toString()
 
         backButton?.setOnClickListener {
             parentFragmentManager.popBackStackImmediate()
-            // TODO: implement back
+            backButton?.setOnClickListener {
+            }
         }
     }
 
     private fun generate(min: Int, max: Int): Int {
-        // TODO: generate random number
         return Random.nextInt(min, max)
     }
 
@@ -53,7 +59,6 @@ class SecondFragment : Fragment() {
             args.putInt(SecondFragment.MIN_VALUE_KEY, min)
             args.putInt(SecondFragment.MAX_VALUE_KEY, max)
             fragment.arguments = args
-            // TODO: implement adding arguments
             return fragment
         }
 

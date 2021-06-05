@@ -35,7 +35,6 @@ class FirstFragment : Fragment() {
 
         min = view.findViewById(R.id.min_value)
         max = view.findViewById(R.id.max_value)
-        // TODO: val max = ...
 
         generateButton?.setOnClickListener {
             parentFragmentManager.beginTransaction()
